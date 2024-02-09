@@ -5,7 +5,7 @@ from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
@@ -170,3 +170,8 @@ def user_login(request):
 # No context variables to pass to the template system, hence the # blank dictionary object...
         return render(request, 'rango/login.html')
 
+def restricted(request):
+    @login.required
+    def user_logout(request):
+        logout(request)
+        return redirect(reverse('rango:index'))

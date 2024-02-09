@@ -3,17 +3,16 @@
 {% load staticfiles %}
 <html>
     <head> 
-        <title>Rango</title>
-    </head>
-    <body>
-        <div>
-            {% block title_block %}    
+        {% block title_block %}    
             {% if category %}
-                <h1>{{ category.name }}</h1> 
+                {{ category.name }}
             {% else %}
                 Unknown Category
             {% endif %}
             {% endblock %}
+    </head>
+    <body>
+        <div>
             {% block body_block %}
                 {% if category %}
                 <h1>{{ category.name }}</h1>
